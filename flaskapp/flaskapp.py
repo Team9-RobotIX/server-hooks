@@ -7,9 +7,15 @@ app = Flask(__name__)
 def run():
     payload = request.values.get('payload')
     if payload is not None:
-        subprocess.call("cd ~/production/ && git pull", shell=True)
-        subprocess.call("cd ~/development/ && git pull", shell=True)
-        return "OK."
+        res = ""
+
+        try:
+            res += subprocess.check_output("cd ~/production/ && git pull", shell=True)
+            res += subprocess.check_output("cd ~/development/ && git pull", shell=True)
+        except subprocess.CalledProcessError as e:
+            return "Git stdout output:\n", e.output
+
+        return res
 
     return "No payload."
 
