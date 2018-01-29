@@ -1,5 +1,5 @@
 from flask import Flask, request
-import os
+import subprocess
 app = Flask(__name__)
 
 
@@ -7,8 +7,8 @@ app = Flask(__name__)
 def run():
     payload = request.values.get('payload')
     if payload is not None:
-        os.system("cd ~/production/ && git pull")
-        os.system("cd ~/development/ && git pull")
+        subprocess.call("cd ~/production/ && git pull")
+        subprocess.call("cd ~/development/ && git pull")
         return "OK."
 
     return "No payload."
