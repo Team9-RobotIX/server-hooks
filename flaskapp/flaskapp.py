@@ -10,5 +10,10 @@ def run():
         os.system("cd ~/production/ && git pull")
 
 
+@app.errorhandler(Exception)
+def exception_handler(error):
+    return "Error: "  + repr(error)
+
+
 if __name__ == '__main__':
     app.run()
