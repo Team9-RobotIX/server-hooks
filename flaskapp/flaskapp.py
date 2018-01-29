@@ -3,11 +3,12 @@ import os
 app = Flask(__name__)
 
 
-@app.route('/pull-production', methods = ['GET', 'POST'])
+@app.route('/pull', methods = ['GET', 'POST'])
 def run():
     payload = request.values.get('payload')
     if payload is not None:
         os.system("cd ~/production/ && git pull")
+        os.system("cd ~/development/ && git pull")
         return "OK."
 
     return "No payload."
