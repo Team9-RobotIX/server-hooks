@@ -10,10 +10,12 @@ def run():
         res = ""
 
         try:
-            res += subprocess.check_output("cd ~/production/ && git pull", shell=True)
-            res += subprocess.check_output("cd ~/development/ && git pull", shell=True)
+            res += subprocess.check_output("cd /var/www/html/production/ && git pull", shell=True)
+            res += subprocess.check_output("cd /var/www/html/development/ && git pull", shell=True)
         except subprocess.CalledProcessError as e:
-            return "Git stdout output:\n", e.output
+            return "Command error: " + str(e.output)
+        except Exception as e:
+            return "Other exception: " + str(e)
 
         return res
 
