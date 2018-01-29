@@ -9,6 +9,8 @@ def run():
     if payload is not None:
         os.system("cd ~/production/ && git pull")
 
+    return "OK."
+
 
 @app.errorhandler(Exception)
 def exception_handler(error):
