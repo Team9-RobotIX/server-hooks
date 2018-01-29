@@ -7,8 +7,8 @@ app = Flask(__name__)
 def run():
     payload = request.values.get('payload')
     if payload is not None:
-        subprocess.call("cd ~/production/ && git pull")
-        subprocess.call("cd ~/development/ && git pull")
+        subprocess.call("cd ~/production/ && git pull", shell=True)
+        subprocess.call("cd ~/development/ && git pull", shell=True)
         return "OK."
 
     return "No payload."
