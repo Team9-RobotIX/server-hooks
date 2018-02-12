@@ -8,10 +8,16 @@ def run():
     payload = request.values.get('payload')
     if payload is not None:
         res = ""
+        cmd = "cd /var/www/html/{0}/ && git fetch --all && \
+            git reset --hard origin/{1}"
 
         try:
-            res += subprocess.check_output("cd /var/www/html/production/ && git pull", shell=True, stderr=subprocess.STDOUT)
-            res += subprocess.check_output("cd /var/www/html/development/ && git pull", shell=True, stderr=subprocess.STDOUT)
+            res += subprocess.check_output(
+                cmd.format("production", "master"),
+                shell=True, stderr=subprocess.STDOUT)
+            res += subprocess.check_output(
+                cmd.format("development", "development"),
+                shell=True, stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError as e:
             return "Command error: " + str(e.output)
         except Exception as e:
