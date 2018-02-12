@@ -13,8 +13,6 @@ def run():
         try:
             res += subprocess.check_output(
                 cmd, shell=True, stderr=subprocess.STDOUT)
-            res += subprocess.check_output(
-                cmd, shell=True, stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError as e:
             return "Command error: " + str(e.output)
         except Exception as e:
