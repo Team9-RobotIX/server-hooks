@@ -1,2 +1,4 @@
 flaskapp/flaskapp.wsgi
 flaskapp/__pycache__
+
+*.pyc
