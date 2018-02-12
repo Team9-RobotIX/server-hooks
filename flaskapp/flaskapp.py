@@ -8,7 +8,7 @@ def run():
     payload = request.values.get('payload')
     if payload is not None:
         res = ""
-        cmd = "sudo -u ubuntu ./updates.sh"
+        cmd = "/var/www/html/server-hooks/updates.sh"
 
         try:
             res += subprocess.check_output(
